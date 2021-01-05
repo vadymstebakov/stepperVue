@@ -1,0 +1,16 @@
+﻿.DS_Store
+._.*
+._*
+Thumbs.db
+.project
+.settings
+*.swp
+tags
+nbproject/*
+.vscode/
+.idea/
+node_modules/
+package-lock.json
+npm-debug.log
+yarn.lock
+yarn-error.log
