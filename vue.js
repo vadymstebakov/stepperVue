@@ -39,33 +39,33 @@ const App = {
   },
   methods: {
     prev() {
-      this.resetIsEnd();
+      this.resetIsEnd(false);
 
-      if (this.isDisableBtnBack) {
+      if (this.isFirstStep) {
         return;
       }
 
       this.activeIndex--;
     },
     reset() {
-      this.resetIsEnd();
+      this.resetIsEnd(false);
       this.activeIndex = 0;
     },
     nextOfFinish() {
       if (this.isLastStep) {
-        this.readyToReset = true;
+        this.resetIsEnd(true);
         return;
       }
 
       this.activeIndex++;
     },
     setActive(index) {
-      this.resetIsEnd();
+      this.resetIsEnd(false);
       this.activeIndex = index;
     },
-    resetIsEnd() {
-      if (this.readyToReset) {
-        this.readyToReset = false;
+    resetIsEnd(val) {
+      if (this.isEnd !== val) {
+        this.isEnd = val;
       }
     },
   },
@@ -73,19 +73,11 @@ const App = {
     getCurrentStepText() {
       return this.steps[this.activeIndex].text;
     },
-    isDisableBtnBack() {
-      return this.activeIndex === 0 ? true : false;
+    isFirstStep() {
+      return this.activeIndex === 0;
     },
     isLastStep() {
-      return this.steps.length - 1 === this.activeIndex ? true : false;
-    },
-    readyToReset: {
-      get() {
-        return this.isEnd;
-      },
-      set(val) {
-        this.isEnd = val;
-      },
+      return this.steps.length - 1 === this.activeIndex;
     },
   },
 };
